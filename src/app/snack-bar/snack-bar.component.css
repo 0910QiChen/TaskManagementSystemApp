@@ -1,0 +1,23 @@
+.mat-mdc-snack-bar-container {
+    margin: 24px;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    min-height: 5vh;
+    min-width: 14vw;
+    background-color: #3f51b5;
+    color: #fff;
+    font-size: 16px;
+}
+
+.mdc-snackbar__label {
+    padding-left: 16px;
+    padding-right: 6px;
+    width: 100%;
+    flex-grow: 1;
+    box-sizing: border-box;
+    margin: 0;
+    visibility: hidden;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}

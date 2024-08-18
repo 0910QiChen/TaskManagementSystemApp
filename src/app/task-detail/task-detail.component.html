@@ -1,0 +1,36 @@
+<div class="container">
+    <table class="table table-borderless">
+        <tr>
+            <td>
+                <img height="216" width="266" *ngIf="type == 'auto'" src="../../assets/auto.png">
+                <img height="216" width="266" *ngIf="type == 'boat'" src="../../assets/boat.png">
+                <img height="216" width="266" *ngIf="type == 'general'" src="../../assets/general.png">
+                <img height="216" width="266" *ngIf="type == 'house'" src="../../assets/house.png">
+            </td>
+        </tr>
+        <tr>
+            <td class="lblclass">Quote ID</td>
+            <td class="dtaclass">{{ targetTask?.QuoteID }}</td>
+        </tr>
+        <tr>
+            <td class="lblclass">Quote Type</td>
+            <td class="dtaclass">{{ targetTask?.QuoteType }}</td>
+        </tr>
+        <tr>
+            <td class="lblclass">Sales Person</td>
+            <td class="dtaclass">{{ targetTask?.Sales }}</td>
+        </tr>
+        <tr>
+            <td class="lblclass">Premium Amount</td>
+            <td class="dtaclass">{{ targetTask?.Premium }}</td>
+        </tr>
+        <tr>
+            <td class="lblclass">Due Date</td>
+            <td class="dtaclass">{{ targetTask?.DueDate | date: 'M/d/yyyy' }}</td>
+        </tr>
+        <tr>
+            <td class="lblclass">Description</td>
+            <td class="dtaclass">{{ targetTask?.Description }}</td>
+        </tr>
+    </table>
+</div>

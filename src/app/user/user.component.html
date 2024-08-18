@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-6 offset-3">
+    <mat-card>
+      <mat-card-content>
+        <table style="width: 100%;">
+          <tr>
+            <td [ngClass]="{'activeClass': isLogin, 'inactiveClass': !isLogin}" (click)="toggleForm()">
+              <mat-card-title>Login</mat-card-title>
+            </td>
+            <td [ngClass]="{'inactiveClass': isLogin, 'activeClass': !isLogin}" (click)="toggleForm()">
+              <mat-card-title>Register</mat-card-title>
+            </td>
+          </tr>
+        </table>
+
+
+          <form [formGroup]="LoginForm" *ngIf="isLogin" (ngSubmit)="Login()" style="width: 100%;">
+            <div style="margin: 5px;">
+              <mat-form-field appearance="fill">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" placeholder="Username *" type="text" required>
+                <mat-error *ngIf="LoginForm.get('username')?.invalid">*Required</mat-error>
+              </mat-form-field>
+            </div>
+            <div style="margin: 5px;">
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" placeholder="Password *" type="password" required>
+                <mat-error *ngIf="LoginForm.get('password')?.invalid">*Required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <button mat-flat-button color="primary" type="submit" [disabled]="LoginForm.invalid">LOGIN</button>
+          </form>    
+
+        <form [formGroup]="RegisterForm" *ngIf="!isLogin" (ngSubmit)="Register()">
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" placeholder="Username *" type="text" required>
+            <mat-error *ngIf="RegisterForm.get('username')?.hasError('required')">*Required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password" placeholder="Password *" required>
+            <mat-error *ngIf="RegisterForm.get('password')?.hasError('required')">*Required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password *" required>
+            <mat-error *ngIf="RegisterForm.controls['confirmPassword'].errors?.['required']">*Required</mat-error>
+            <mat-error *ngIf="RegisterForm.controls['confirmPassword'].errors?.['mismatch']">
+              *Password and Confirm Password must match.
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-flat-button color="primary" type="submit" [disabled]="RegisterForm.invalid">Register</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

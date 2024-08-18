@@ -1,0 +1,116 @@
+<div class="mainbox">
+    <div class="headerbox">
+        <h3 class="mainbox-h3">Task Details</h3>
+        <button class="mainbox-button" (click)="addTask()"><mat-icon style="color: #fff">menu</mat-icon>Add Task</button>
+    </div>
+
+    <div>
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    Show
+                    <select matNativeControl [(ngModel)]="selectedPageSize" (ngModelChange)="onPageSizeChange()">
+                        <option *ngFor="let option of pageSizeOptions" [value]="option">
+                            {{ option }}
+                        </option>
+                    </select>
+                    entries
+                </td>
+                <td>
+                    <div style="width: 40vw; float: right;">
+                        Order By:
+                        <select matNativeControl [(ngModel)]="sortColumn" (ngModelChange)="onColumnChange()">
+                            <option *ngFor="let col of displayedColumns" [value]="col">
+                                {{col}}
+                            </option>
+                        </select> &nbsp;
+                        <span style="padding-right: 5%; display: inline-block;">
+                            Decending
+                            <input type="checkbox" style="vertical-align: middle;" (change)="onOrderChange()">
+                        </span>
+                        <span>
+                            Search
+                            <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange($event)" placeholder="Search">
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="padding: 1%;">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <thead role="rowgroup" class="mat-table-header-row">
+                <ng-container matColumnDef="QuoteID">
+                    <th mat-header-cell *matHeaderCellDef class="first-of-type"> No. </th>
+                    <td mat-cell *matCellDef="let element" class="first-of-type"> {{element.QuoteID}} </td>
+                  </ng-container>
+                
+                  <ng-container matColumnDef="QuoteType">
+                    <th mat-header-cell *matHeaderCellDef> Quote Type </th>
+                    <td mat-cell *matCellDef="let element"> {{element.QuoteType}} </td>
+                  </ng-container>
+                
+                  <ng-container matColumnDef="Description">
+                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="DueDate">
+                      <th mat-header-cell *matHeaderCellDef> Due Date </th>
+                      <td mat-cell *matCellDef="let element"> {{element.DueDate | date: 'MM/dd/yyyy'}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="Premium">
+                      <th mat-header-cell *matHeaderCellDef> Premium </th>
+                      <td mat-cell *matCellDef="let element"> {{element.Premium | currency}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Sales">
+                    <th mat-header-cell *matHeaderCellDef> Sales </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Sales}} </td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="Actions">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element" role="cell" style="padding-right: 0; text-align: center; color: #646464;">
+                        <mat-icon aria-hidden="false" fontIcon="visibility" class="material-icon" (click)="viewTaskDetail(element.QuoteID)"></mat-icon>
+                        &nbsp;
+                        <mat-icon aria-hidden="false" fontIcon="edit" class="material-icon" (click)="editTask(element)"></mat-icon>
+                        &nbsp;
+                        <mat-icon aria-hidden="false" fontIcon="delete" class="material-icon" (click)="deleteTask(element.QuoteID)"></mat-icon>
+                    </td>
+                  </ng-container>
+            </thead>
+
+            <tbody role="rowgroup">
+                <tr mat-header-row *matHeaderRowDef="displayedColumns" class="mat-table-tr"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </tbody>
+            <tfoot role="rowgroup" class="mat-table-sticky" style="display: none; bottom: 0px; z-index: 10;">
+            </tfoot>
+        </table>
+        <mat-paginator hidden></mat-paginator>
+    </div>
+
+    <table class="paginatorTable">
+        <tr>
+            <td style="text-align: left;" class="paginatorTable-td">
+                {{rangeLabel}}
+            </td>
+            <td style="text-align: right;" class="paginatorTable-td">
+                <a (click)="previousPage()" class="paginator-a">
+                    Previous
+                </a>
+                <span *ngFor="let tab of [].constructor(paginatorTabs); let i = index" (click)="goToPage(i)"
+                [ngClass]="{'paginatorTab': this.paginator.pageIndex !== i, 'paginatorTabActive': this.paginator.pageIndex === i}">
+                    {{ i + 1 }}
+                </span>
+                <a (click)="nextPage()" class="paginator-a">
+                    Next
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,131 @@
+<div *ngIf="mode === 'delete'">
+    <h2 matDialogTitle style="width: 25vw; padding: 0; margin-bottom: 10px; display: flex;">{{ data.modalTitle }}</h2>
+        <mat-dialog-content style="padding: 0; font-size: 14px;">
+            <p style="color: #3f3f3f">
+                You are about to delete user
+            </p>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-button (click)="onNoClick()" cdkFocusInitial>No</button>
+            <button mat-button (click)="onYesClick()" style="background-color: #3f51b5; color: #fff;">Yes</button>
+        </mat-dialog-actions>
+</div>
+<div *ngIf="mode === 'add' || mode === 'update'">
+    <form [formGroup]="TaskForm" (ngSubmit)="onSubmitClick()">
+        <h2 matDialogTitle style="background: #3f51b5; color:white;" class="mat-dialog-h2">{{ data.modalTitle }}</h2>
+        <mat-dialog-content>
+            <div style="width: 70vw;">
+    
+                <div class="row">
+                    <div class="col-4 formLabelClass">
+                        Quote Id
+                    </div>
+                    <div class="col-8 formControlClass">
+                        <input formControlName="QuoteID" style="background-color: gainsboro;" readonly>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-4 formLabelClass">
+                        Quote Type
+                    </div>
+                    <div class="col-8 formControlClass">
+                        <select formControlName="QuoteType">
+                            <option>Auto</option>
+                            <option>Boat</option>
+                            <option value="House">Home</option>
+                            <option>General</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-4 formLabelClass">
+                        Sales
+                    </div>
+                    <div class="col-8 formControlClass">
+                        <input formControlName="Sales" type="text">
+                        <mat-error *ngIf="TaskForm.get('Sales')?.touched && TaskForm.get('Sales')?.invalid" style="font-size: 12px;">*Required</mat-error>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-4 formLabelClass">
+                        Premium
+                    </div>
+                    <div class="col-8 formControlClass">
+                        <input formControlName="Premium" type="text">
+                        <mat-error *ngIf="TaskForm.get('Premium')?.touched && TaskForm.get('Premium')?.invalid" style="font-size: 12px;">*Required</mat-error>
+                    </div>
+                </div>
+                
+                <div class="row" style="align-items: center;">
+                    <div class="col-4 formLabelClass">
+                        Due Date
+                    </div>
+                    <div class="col-8 formControlClass" style="display: flex">
+                        <table style="width: auto;">
+                            <tr>
+                            </tr>
+                            <tr>
+                                <td style="padding-top: 18px;">
+                                    <div>
+                                        <mat-form-field appearance="outline">
+                                            <input matInput [matDatepicker]="picker" formControlName="DueDate" style="width: 100%; text-align: center; font-size:14px;" id="mat-input-2">
+                                            <mat-datepicker-toggle matSuffix [for]="picker" style="color:blue;"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker style="color: blue;"></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="abc" (click)="incrementHour()">
+                                        <mat-icon>keyboard_arrow_up</mat-icon>
+                                    </div>
+                                    <div class="abcd">
+                                        <input style="height: 100%; width: 100%;" type="text" [value]="getFormattedHour()">
+                                    </div>
+                                    <div class="abc" (click)="decrementHour()">
+                                        <mat-icon>keyboard_arrow_down</mat-icon>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="abc" (click)="incrementMinute()">
+                                        <mat-icon>keyboard_arrow_up</mat-icon>
+                                    </div>
+                                    <div class="abcd">
+                                        <input style="height: 100%; width: 100%;" type="text" value="00" [value]="getFormattedMinute()">
+                                    </div>
+                                    <div class="abc" (click)="decrementMinute()">
+                                        <mat-icon>keyboard_arrow_down</mat-icon>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="abcd">
+                                        <input style="height: 100%; width: 100%;" type="text" [value]="getPeriod()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-4 formLabelClass">
+                        Description
+                    </div>
+                    <div class="col-8 formControlClass">
+                        <textarea formControlName="Description" style="width: 100%;"></textarea>
+                        <mat-error *ngIf="TaskForm.get('Description')?.touched && TaskForm.get('Description')?.invalid" style="font-size: 12px;">*Required</mat-error>
+                    </div>
+                </div>
+            </div>
+        </mat-dialog-content>
+    
+        <mat-dialog-actions>
+            <button mat-button (click)="onCancelClick()">Cancel</button>
+            <button mat-button type="submit" cdkFocusInitial>Submit</button>
+        </mat-dialog-actions>
+    </form>
+</div>
