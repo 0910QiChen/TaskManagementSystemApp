@@ -6,12 +6,12 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path:'', component: UserComponent },
   { path:'Register', component: UserComponent },
   { path:'Login', component:UserComponent },
   { path:'Tasks', component:TaskComponent, canActivate: [AuthGuard] },
   { path:'TaskDetails', component:TaskDetailComponent, canActivate: [AuthGuard] },
-  { path:'**', redirectTo:'Login', pathMatch:'full' },
+  { path:'', redirectTo: '/Tasks', pathMatch:'full' },
+  { path:'**', component:TaskComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

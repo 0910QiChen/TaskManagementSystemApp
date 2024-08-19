@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-8 formControlClass">
                         <input formControlName="Sales" type="text">
-                        <mat-error *ngIf="TaskForm.get('Sales')?.touched && TaskForm.get('Sales')?.invalid" style="font-size: 12px;">*Required</mat-error>
+                        <span *ngIf="TaskForm.get('Sales')?.touched && TaskForm.get('Sales')?.invalid" style="color: red;"> *Required</span>
                     </div>
                 </div>
     
@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-8 formControlClass">
                         <input formControlName="Premium" type="text">
-                        <mat-error *ngIf="TaskForm.get('Premium')?.touched && TaskForm.get('Premium')?.invalid" style="font-size: 12px;">*Required</mat-error>
+                        <span *ngIf="TaskForm.get('Premium')?.touched && TaskForm.get('Premium')?.invalid" style="color: red;"> *Required</span>
                     </div>
                 </div>
                 
@@ -117,7 +117,7 @@
                     </div>
                     <div class="col-8 formControlClass">
                         <textarea formControlName="Description" style="width: 100%;"></textarea>
-                        <mat-error *ngIf="TaskForm.get('Description')?.touched && TaskForm.get('Description')?.invalid" style="font-size: 12px;">*Required</mat-error>
+                        <span *ngIf="TaskForm.get('Description')?.touched && TaskForm.get('Description')?.invalid" style="color: red;"> *Required</span>
                     </div>
                 </div>
             </div>

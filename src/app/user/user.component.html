@@ -18,15 +18,15 @@
             <div style="margin: 5px;">
               <mat-form-field appearance="fill">
                 <mat-label>Username</mat-label>
-                <input matInput formControlName="username" placeholder="Username *" type="text" required>
-                <mat-error *ngIf="LoginForm.get('username')?.invalid">*Required</mat-error>
+                <input matInput formControlName="username" placeholder="username" type="text" required>
+                <mat-error *ngIf="LoginForm.get('username')?.hasError('required')">*Required</mat-error>
               </mat-form-field>
             </div>
             <div style="margin: 5px;">
               <mat-form-field>
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="password" placeholder="Password *" type="password" required>
-                <mat-error *ngIf="LoginForm.get('password')?.invalid">*Required</mat-error>
+                <input matInput formControlName="password" placeholder="password" type="password" required>
+                <mat-error *ngIf="LoginForm.get('password')?.hasError('required')">*Required</mat-error>
               </mat-form-field>
             </div>
 
@@ -36,19 +36,19 @@
         <form [formGroup]="RegisterForm" *ngIf="!isLogin" (ngSubmit)="Register()">
           <mat-form-field>
             <mat-label>Username</mat-label>
-            <input matInput formControlName="username" placeholder="Username *" type="text" required>
+            <input matInput formControlName="username" placeholder="username" type="text" required>
             <mat-error *ngIf="RegisterForm.get('username')?.hasError('required')">*Required</mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput formControlName="password" type="password" placeholder="Password *" required>
+            <input matInput formControlName="password" type="password" placeholder="password" required>
             <mat-error *ngIf="RegisterForm.get('password')?.hasError('required')">*Required</mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Confirm Password</mat-label>
-            <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password *" required>
+            <input matInput type="password" formControlName="confirmPassword" placeholder="password" required>
             <mat-error *ngIf="RegisterForm.controls['confirmPassword'].errors?.['required']">*Required</mat-error>
             <mat-error *ngIf="RegisterForm.controls['confirmPassword'].errors?.['mismatch']">
               *Password and Confirm Password must match.

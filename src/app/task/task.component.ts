@@ -155,7 +155,6 @@ export class TaskComponent implements OnInit, AfterViewInit {
       data: { mode:'update', task, modalTitle: 'Update Quote' }});
     dialogRef.afterClosed().subscribe(
       (result) => {
-        console.log(`result: ${JSON.stringify(result)}`);
         if(result?.action == 'update') {
           console.log(`Updated Task: ${JSON.stringify(result.task)}`);
           this.taskService.EditQuote(task.QuoteID, result.task).subscribe(
