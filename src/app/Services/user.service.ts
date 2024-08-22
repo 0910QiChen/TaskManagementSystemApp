@@ -8,7 +8,7 @@ import { catchError, Observable, tap, throwError } from 'rxjs';
 
 export class UserService {
 
-  private apiUrl = 'https://tms0822-gsfnfbf4g3e8acd4.eastus-01.azurewebsites.net/';
+  private apiUrl = 'http://192.168.1.52:81/api';
 
   isAuthenticated = false;
 
