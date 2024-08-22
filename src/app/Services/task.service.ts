@@ -9,7 +9,7 @@ import { UserService } from './user.service';
 
 export class TaskService {
 
-  private apiUrl = 'http://192.168.1.52:81/api';
+  private apiUrl = 'https://tms0822-gsfnfbf4g3e8acd4.eastus-01.azurewebsites.net/';
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
