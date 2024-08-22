@@ -12,9 +12,7 @@ export class UserService {
 
   isAuthenticated = false;
 
-  constructor(private http: HttpClient) {
-    this.checkToken();
-  }
+  constructor(private http: HttpClient) { }
 
   Register(registerInfo: RegisterUser): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/Register`, registerInfo).pipe(
@@ -70,16 +68,6 @@ export class UserService {
   RemoveToken() {
     localStorage.removeItem('token');
   }
-
-  private checkToken() {
-    const token = this.GetToken();
-    if (token) {
-      this.isAuthenticated = true;
-    } else {
-      this.isAuthenticated = false;
-    }
-  }
-
 }
 
 export interface RegisterUser {

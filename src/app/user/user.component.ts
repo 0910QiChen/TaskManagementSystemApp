@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginUser, RegisterUser, UserService } from '../Services/user.service';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,9 +6,7 @@ import {
   MatSnackBar,
   MatSnackBarConfig,
 } from '@angular/material/snack-bar';
-import { MatButtonModule } from '@angular/material/button';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
-import { duration } from 'moment-timezone';
 
 @Component({
   selector: 'app-user',
@@ -65,7 +63,6 @@ export class UserComponent {
       }
       this.userService.Register(RegisterInfo).subscribe({
         next: response => {
-          console.log('Registration successful', response);
           this.openSnackBar('Registration Successful!');
         },
         error: err => {
