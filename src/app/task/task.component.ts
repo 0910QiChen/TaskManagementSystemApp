@@ -88,6 +88,7 @@ export class TaskComponent implements OnInit, AfterViewInit {
   onPageSizeChange(): void {
     this.paginator.pageSize = this.selectedPageSize;
     this.dataSource.paginator = this.paginator;
+    this.paginatorTabs = Math.ceil(this.Tasks.length/this.paginator.pageSize);
     this.rangeLabel = this.getRangeLabel(this.paginator.pageIndex);
   }
 
